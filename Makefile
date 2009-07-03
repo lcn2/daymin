@@ -3,9 +3,9 @@
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision$
-# @(#) $Id$
-# @(#) $Source$
+# @(#) $Revision: 1.1 $
+# @(#) $Id: Makefile,v 1.1 2009/07/03 08:02:12 chongo Exp chongo $
+# @(#) $Source: /usr/local/src/cmd/daymin/RCS/Makefile,v $
 #
 # Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
 #
@@ -54,10 +54,9 @@ configure:
 	@echo nothing to configure
 
 clean quick_clean quick_distclean distclean:
-	@echo rule to clean or empty rule if nothing is built
 
 clobber quick_clobber: clean
-	@echo rule to clobber or empty rule if nothing is built
+	rm -f daymin
 
 install: all
 	${INSTALL} -m 0555 ${TARGETS} ${DESTDIR}
