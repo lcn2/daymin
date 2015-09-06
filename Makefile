@@ -3,9 +3,9 @@
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision: 1.1 $
-# @(#) $Id: Makefile,v 1.1 2009/07/03 08:02:12 chongo Exp chongo $
-# @(#) $Source: /usr/local/src/cmd/daymin/RCS/Makefile,v $
+# @(#) $Revision: 1.2 $
+# @(#) $Id: Makefile,v 1.2 2009/07/03 08:03:18 chongo Exp root $
+# @(#) $Source: /usr/local/src/sbin/daymin/RCS/Makefile,v $
 #
 # Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
 #
@@ -36,10 +36,10 @@ SHELL= /bin/sh
 CC= cc
 CFLAGS= -O3 -g3
 
-TOPNAME= cmd
+TOPNAME= sbin
 INSTALL= install
 
-DESTDIR= /usr/local/bin
+DESTDIR= /usr/local/sbin
 
 TARGETS= daymin
 
