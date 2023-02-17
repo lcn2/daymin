@@ -2,9 +2,9 @@
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision$
-# @(#) $Id$
-# @(#) $Source$
+# @(#) $Revision: 1.1 $
+# @(#) $Id: daymin.pl,v 1.1 2009/07/03 08:02:12 chongo Exp $
+# @(#) $Source: /usr/local/src/cmd/daymin/RCS/daymin.pl,v $
 #
 # Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
 #

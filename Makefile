@@ -3,8 +3,8 @@
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision: 1.2 $
-# @(#) $Id: Makefile,v 1.2 2009/07/03 08:03:18 chongo Exp root $
+# @(#) $Revision: 1.3 $
+# @(#) $Id: Makefile,v 1.3 2015/09/06 06:52:57 root Exp $
 # @(#) $Source: /usr/local/src/sbin/daymin/RCS/Makefile,v $
 #
 # Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
