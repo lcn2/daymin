@@ -1,12 +1,8 @@
-#!/usr/bin/perl -wT
+#!/usr/bin/env perl -wT
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision: 1.1 $
-# @(#) $Id: daymin.pl,v 1.1 2009/07/03 08:02:12 chongo Exp $
-# @(#) $Source: /usr/local/src/cmd/daymin/RCS/daymin.pl,v $
-#
-# Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
+# Copyright (c) 2009,2023 by Landon Curt Noll.  All Rights Reserved.
 #
 # Permission to use, copy, modify, and distribute this software and
 # its documentation for any purpose and without fee is hereby granted,
