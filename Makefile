@@ -1,13 +1,8 @@
-#!/bin/make
-# @(#)Makefile	1.2 04 May 1995 02:06:57
+#!/usr/bin/env make
 #
 # daymin - run a daily task a minute later each day
 #
-# @(#) $Revision: 1.3 $
-# @(#) $Id: Makefile,v 1.3 2015/09/06 06:52:57 root Exp $
-# @(#) $Source: /usr/local/src/sbin/daymin/RCS/Makefile,v $
-#
-# Copyright (c) 2009 by Landon Curt Noll.  All Rights Reserved.
+# Copyright (c) 2009,2023 by Landon Curt Noll.  All Rights Reserved.
 #
 # Permission to use, copy, modify, and distribute this software and
 # its documentation for any purpose and without fee is hereby granted,
@@ -32,9 +27,12 @@
 # Share and enjoy! :-)
 
 
-SHELL= /bin/sh
+SHELL= bash
 CC= cc
 CFLAGS= -O3 -g3
+RM= rm
+CP= cp
+CHMOD= chmod
 
 TOPNAME= sbin
 INSTALL= install
@@ -46,9 +44,9 @@ TARGETS= daymin
 all: ${TARGETS}
 
 daymin: daymin.pl
-	-rm -f $@
-	cp $@.pl $@
-	chmod +x $@
+	${RM} -f $@
+	${CP} $@.pl $@
+	${CHMOD} +x $@
 
 configure:
 	@echo nothing to configure
@@ -56,7 +54,7 @@ configure:
 clean quick_clean quick_distclean distclean:
 
 clobber quick_clobber: clean
-	rm -f daymin
+	${RM} -f daymin
 
 install: all
 	${INSTALL} -m 0555 ${TARGETS} ${DESTDIR}
