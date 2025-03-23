@@ -1,8 +1,8 @@
-#!/usr/bin/env perl -wT
+#!/usr/bin/env perl
 #
 # daymin - run a daily task a minute later each day
 #
-# Copyright (c) 2009,2023 by Landon Curt Noll.  All Rights Reserved.
+# Copyright (c) 2009,2023,2025 by Landon Curt Noll.  All Rights Reserved.
 #
 # Permission to use, copy, modify, and distribute this software and
 # its documentation for any purpose and without fee is hereby granted,
@@ -26,7 +26,7 @@
 #
 # Share and enjoy! :-)
 
-# This utility allows commnad to be periodically executed where the
+# This utility allows command to be periodically executed where the
 # command must not be executed more than once in 24 hours.  When this
 # utility is executed via a crontab on at the same time each day:
 #
@@ -42,7 +42,7 @@
 # minfile is left with a value of 1 for next time.
 #
 # The minfile is assumed to contain a single line containing the
-# number of minutes for which the command execution should be delated.
+# number of minutes for which the command execution should be delayed.
 # All other minfile contents is ignored and removed when file is
 # incremented.
 #
@@ -52,7 +52,7 @@
 #	echo 0 > /var/daymin/minfile
 #
 # If is an error if the minfile does not exit and -c is not used.  So
-# this crontab line will ensure that the command will be evantually
+# this crontab line will ensure that the command will be eventually
 # executed, regardless of the state or non-existence of the minfile:
 #
 #	0 0 * * * daymin -c /var/daymin/minfile shell_file
@@ -66,7 +66,7 @@
 # would be to execute the echo commands with a period longer then
 # the usual day + 1 minute.
 #
-# The execution delay is acomplished by the at(1) command.  Therefore the
+# The execution delay is accomplished by the at(1) command.  Therefore the
 # user must be allowed to use at.  See the at(1) man page for details.
 
 
@@ -74,31 +74,38 @@
 #
 use strict;
 use bytes;
-use vars qw($opt_v $opt_c $delay);
-use Getopt::Long;
+use vars qw($opt_h $opt_v $opt_V $opt_c $delay);
+use Getopt::Long qw(:config no_ignore_case);
 use Fcntl qw(:DEFAULT :flock);
+use File::Basename;
 
-# version - RCS style *and* usable by MakeMaker
+# version
 #
-my $VERSION = substr q$Revision: 1.1 $, 10;
-$VERSION =~ s/\s+$//;
+my $VERSION = "1.1.1 2025-03-22";
 
 # my vars
 #
+my $NAME = basename($0);
 
 # usage and help
 #
-my $usage = "$0 [-v lvl] [-c] minfile shell_file";
+my $usage = "$NAME [-h] [-v lvl] [-V] [-c] minfile shell_file";
 my $help = qq{$usage
 
-	-c		create the minfile before incrementing it
+	-h		print help and exit
 	-v lvl		verbose / debug level
+	-V		print version and exit
+
+	-c		create the minfile before incrementing it
 	minfile		contain number of mintes to delay next run
 	shell_file	a file containing input for the at(1) command
-};
+
+$NAME version: $VERSION};
 my %optctl = (
+    "h" => \$opt_h,
     "c" => \$opt_c,
-    "v=i" => \$opt_v
+    "v=i" => \$opt_v,
+    "V" => \$opt_V
 );
 
 
@@ -125,13 +132,23 @@ MAIN: {
 
     # set the defaults
     #
+    $opt_h = 0;
     $opt_v = 0;
+    $opt_V = 0;
     $delay = 0;
 
     # parse args
     #
     if (!GetOptions(%optctl)) {
 	error(1, "invalid command line\nusage: $help");
+    }
+    if ($opt_h) {
+	print "$help\n";
+	exit(0);
+    }
+    if ($opt_V) {
+	print "$VERSION\n";
+	exit(0);
     }
     if ($#ARGV < 0) {
 	error(2, "minfile argument required\nusage: $help");
